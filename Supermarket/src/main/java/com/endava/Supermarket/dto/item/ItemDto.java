@@ -29,5 +29,5 @@ public class ItemDto {
     private Double price;
 
     @NotNull(message = "Please provide type of food!")
-    private ItemType type;
+    private String type;
 }

@@ -1,6 +1,7 @@
 package com.endava.Supermarket.service;
 
 import com.endava.Supermarket.dto.purchase.PurchaseDto;
+import com.endava.Supermarket.exception.InvalidPaymentTypeException;
 import com.endava.Supermarket.exception.InvalidPurchaseMethod;
 import com.endava.Supermarket.model.Item;
 import com.endava.Supermarket.model.PaymentType;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 @Service
@@ -39,8 +41,13 @@ public class PurchaseServiceImpl implements PurchaseService{
     public Purchase createPurchase(PurchaseDto newPurchase) {
         Purchase purchase = modelMapper.map(newPurchase,Purchase.class);
         purchase.setItems(new ArrayList<>());
+        try {
+        purchase.setPaymentType(PaymentType.valueOf(newPurchase.getPaymentType().toUpperCase(Locale.ROOT)));
+        }catch (Exception ex){
+            throw new InvalidPaymentTypeException();
+        }
         purchase.setSupermarket(supermarketRepository.findById(newPurchase.getSupermarketId()).orElseThrow(RuntimeException::new));
-        if (newPurchase.getPaymentType().equals(PaymentType.CASH) && newPurchase.getCashAmount()==null){
+        if (purchase.getPaymentType().equals(PaymentType.CASH) && newPurchase.getCashAmount()==null){
             throw new InvalidPurchaseMethod();
         }
         for (String itemId : newPurchase.getItemIds()) {

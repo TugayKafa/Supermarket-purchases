@@ -24,7 +24,7 @@ public class PurchaseDto {
     private List<String> itemIds;
 
     @NotNull
-    private PaymentType paymentType;
+    private String paymentType;
 
     private Double cashAmount;
 }
