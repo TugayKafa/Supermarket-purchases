@@ -1,6 +1,7 @@
 package com.endava.Supermarket.service;
 
 import com.endava.Supermarket.dto.purchase.PurchaseDto;
+import com.endava.Supermarket.exception.InvalidPurchaseMethod;
 import com.endava.Supermarket.model.Item;
 import com.endava.Supermarket.model.PaymentType;
 import com.endava.Supermarket.model.Purchase;
@@ -40,7 +41,7 @@ public class PurchaseServiceImpl implements PurchaseService{
         purchase.setItems(new ArrayList<>());
         purchase.setSupermarket(supermarketRepository.findById(newPurchase.getSupermarketId()).orElseThrow(RuntimeException::new));
         if (newPurchase.getPaymentType().equals(PaymentType.CASH) && newPurchase.getCashAmount()==null){
-            throw new RuntimeException("You have to provide cash amount if the payment type is CASH!");
+            throw new InvalidPurchaseMethod();
         }
         for (String itemId : newPurchase.getItemIds()) {
             Item item = itemRepository.findById(itemId).orElse(null);
