@@ -1,6 +1,6 @@
 package com.endava.Supermarket.model;
 
-public enum Food {
+public enum Type {
     FOOD,
     DRINKS,
     TECHNOLOGY,

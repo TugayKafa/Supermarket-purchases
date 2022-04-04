@@ -29,12 +29,12 @@ public class Item {
     private String name;
 
     @Column(name = "price", nullable = false)
-    private Double price;
+    private double price;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "food_type", nullable = false)
-    private Food food;
+    @Column(name = "item_type", nullable = false)
+    private Type type;
 
-//    @ManyToMany(mappedBy = "supermarkets")
-//    private List<Supermarket> supermarkets;
+    @ManyToMany(mappedBy = "items")
+    private List<Supermarket> supermarkets;
 }

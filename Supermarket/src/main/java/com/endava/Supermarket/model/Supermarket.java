@@ -38,10 +38,10 @@ public class Supermarket {
     @Column(name = "work_hours", nullable = false)
     private String workHours;
 
-//    @ManyToMany(targetEntity = Item.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinTable(name = "supermarket_item",
-//            joinColumns = @JoinColumn(name = "supermarket_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "item_id",
-//                    referencedColumnName = "id"))
-//    private List<Item> items;
+    @ManyToMany(targetEntity = Item.class   )
+    @JoinTable(name = "supermarket_item",
+            joinColumns = @JoinColumn(name = "supermarket_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id",
+                    referencedColumnName = "id"))
+    private List<Item> items;
 }
