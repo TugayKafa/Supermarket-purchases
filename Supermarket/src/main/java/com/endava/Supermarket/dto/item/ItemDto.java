@@ -1,6 +1,6 @@
 package com.endava.Supermarket.dto.item;
 
-import com.endava.Supermarket.model.Type;
+import com.endava.Supermarket.model.ItemType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,5 +22,5 @@ public class ItemDto {
     private Double price;
 
     @NotNull(message = "Please provide type of food!")
-    private Type type;
+    private ItemType type;
 }

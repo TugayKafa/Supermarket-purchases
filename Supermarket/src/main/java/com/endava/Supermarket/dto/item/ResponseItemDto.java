@@ -1,6 +1,6 @@
 package com.endava.Supermarket.dto.item;
 
-import com.endava.Supermarket.model.Type;
+import com.endava.Supermarket.model.ItemType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +17,6 @@ public class ResponseItemDto {
 
     private Double price;
 
-    private Type type;
+    private ItemType type;
 
 }
